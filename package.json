@@ -2,19 +2,25 @@
   "name": "crypto-tool",
   "version": "1.0.0",
   "description": "try nodejs technology",
-  "main": "app.js",
+  "main": "src/app.js",
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/midmihua/nodejs-crypto-tool.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "test": "mocha"
   },
   "author": "midmihua",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongodb": "^3.1.8"
+    "mongodb": "^3.1.8",
+    "node-fetch": "^2.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
