@@ -74,3 +74,11 @@ module.exports = {
     order_book,
     trade_hist
 };
+
+// Hot to call
+// (async () => {
+
+//     let market = await kuna.market('btcuah');
+//     console.log('market: ', market);
+
+// })();

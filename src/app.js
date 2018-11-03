@@ -1,24 +1,26 @@
-const kuna = require('./kuna/api');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-console.log('start');
+// Init new application
+const app = express();
 
-(async () => {
+// Connect to mongodb
+mongoose.connect('mongodb://localhost/kunalocal', {useNewUrlParser: true});
+mongoose.Promise = global.Promise;
 
-    // let time = await kuna.timestamp();
-    // console.log('time: ', time);
+// Initialize body parser
+app.use(bodyParser.json());
 
-    // let markets = await kuna.market();
-    // console.log('markets: ', markets);
+// Initialize routes
+app.use('/api', require('./routes/api'));
 
-    // let market = await kuna.market('btcuah');
-    // console.log('market: ', market);
+// Error handling middleware
+app.use((err, req, res, next) => {
+    res.status(422).send({error: err.message});
+});
 
-    // let order_book = await kuna.order_book('btcuah');
-    // console.log('order_book: ', order_book);
-
-    // let trade_hist = await kuna.trade_hist('btcuah');
-    // console.log('trade_hist: ', trade_hist);
-
-})();
-
-console.log('end');
+// Start the application
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});

@@ -1,0 +1,1 @@
+const KUNA_DATA = require('./../design/fixture/kuna_trade_history.json');
