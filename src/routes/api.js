@@ -15,7 +15,6 @@ router.get('/get', (req, res, next) => {
     }
     else {
         Kuna.find().then((records) => {
-            console.log(records);
             res.status(200).send(records);
         }).catch(next);
     }
