@@ -1,3 +1,4 @@
+require('dotenv-extended').load();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -6,7 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Connect to mongodb
-mongoose.connect('mongodb://localhost/kunalocal', {useNewUrlParser: true});
+mongoose.connect(
+    'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE, {useNewUrlParser: true}
+    );
 mongoose.Promise = global.Promise;
 
 // Initialize body parser
@@ -21,6 +24,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start the application
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(process.env.HTTP_PORT, () => {
+    console.log('Server is running on port ' + process.env.HTTP_PORT);
 });

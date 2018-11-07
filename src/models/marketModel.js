@@ -65,8 +65,8 @@ const PairSchema = new Schema({
     }
 });
 
-// Create Kuna data storage schema and model
-const KunaSchema = new Schema({
+// Create market pair data storage schema and model
+const MarketPairSchema = new Schema({
     market: {
         type: String,
         required: true
@@ -76,6 +76,6 @@ const KunaSchema = new Schema({
     pair: PairSchema
 });
 
-const KunaModel = mongoose.model('kuna', KunaSchema);
+const MarketPairModel = mongoose.model(process.env.MONGO_DATABASE_ORDER_HIST, MarketPairSchema);
 
-module.exports = KunaModel;
+module.exports = MarketPairModel;
