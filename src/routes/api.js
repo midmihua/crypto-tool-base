@@ -1,11 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('../models/marketModel');
+const getCurrectStatus = require('../boundary/currentStatus');
 
 // Get existing crypto pairs data
 router.get('/get', (req, res, next) => {
-    if (req.query.name != undefined) {
-        storage.findOne({ 'pair.name': req.query.name }).then((records) => {
+    if (req.query.user !== undefined && req.query.coin !== undefined) {
+        storage.find({ 'user': req.query.user, 'coin': req.query.coin.toUpperCase() }).then((records) => {
+            if (records === null)
+                return res.send({ result: 'Requested data was not found' });
+            else
+                res.status(200).send(getCurrectStatus(records));
+        }).catch(next);
+    }
+    else if (req.query.user !== undefined && req.query.coin === undefined) {
+        storage.find({ 'user': req.query.user }).then((records) => {
+            if (records === null)
+                return res.send({ result: 'Requested data was not found' });
+            else
+                res.status(200).send(records);
+        }).catch(next);
+    }
+    else if (req.query.user === undefined && req.query.coin !== undefined) {
+        storage.find({ 'coin': req.query.coin.toUpperCase() }).then((records) => {
             if (records === null)
                 return res.send({ result: 'Requested data was not found' });
             else
@@ -26,7 +43,7 @@ router.post('/post', (req, res, next) => {
     }).catch(next);
 });
 
-// Update existing crypto pairs data
+// Update completely existing crypto pairs data
 router.put('/put/:id', (req, res, next) => {
     storage.findByIdAndUpdate({ _id: req.params.id }, req.body).then(() => {
         storage.findOne({ _id: req.params.id }).then((record) => {
@@ -35,7 +52,7 @@ router.put('/put/:id', (req, res, next) => {
     }).catch(next);
 });
 
-// Update existing crypto pairs data
+// Remove existing crypto pairs data
 router.delete('/delete/:id', (req, res, next) => {
     storage.findByIdAndRemove({ _id: req.params.id }).then((record) => {
         res.send(record);

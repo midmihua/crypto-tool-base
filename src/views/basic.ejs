@@ -1,0 +1,55 @@
+<%- include('includes/start.ejs') %>
+
+<table class="table table-bordered table-sm table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">MS name</th>
+            <th scope="col">Env</th>
+            <th scope="col">Status</th>
+            <th scope="col">Build</th>
+            <th scope="col">URL health</th>
+            <th scope="col">URL info</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <!-- Dunamic -->
+
+        <% data.forEach(function(ms) { %>
+
+        <tr>
+            <th rowspan="4"><%= ms.ms %></th>
+            <td class="p-3 mb-2 bg-secondary text-white">INT</td>
+            <td class="p-3 mb-2 bg-success text-white"><%= ms.int.health %></td>
+            <td class="p-3 mb-2 bg-danger text-white"><%= ms.int.info %></td>
+            <td><a href='<%= ms.int.health_url %>'><%= ms.int.health_url %></a></td>
+            <td><a href='<%= ms.int.info_url %>'><%= ms.int.info_url %></a></td>
+        </tr>
+        <tr>
+            <td class="p-3 mb-2 bg-secondary text-white">QA</td>
+            <td><%= ms.qa.health %></td>
+            <td><%= ms.qa.info %></td>
+            <td><a href='<%= ms.qa.health_url %>'><%= ms.int.health_url %></a></td>
+            <td><a href='<%= ms.qa.info_url %>'><%= ms.int.info_url %></a></td>
+        </tr>
+        <tr>
+            <td class="p-3 mb-2 bg-secondary text-white">STG</td>
+            <td><%= ms.stg.health %></td>
+            <td><%= ms.stg.info %></td>
+            <td><a href='<%= ms.stg.health_url %>'><%= ms.int.health_url %></a></td>
+            <td><a href='<%= ms.stg.info_url %>'><%= ms.int.info_url %></a></td>
+        </tr>
+        <tr>
+            <td class="p-3 mb-2 bg-secondary text-white">PRD</td>
+            <td><%= ms.prod.health %></td>
+            <td><%= ms.prod.info %></td>
+            <td><a href='<%= ms.prod.health_url %>'><%= ms.int.health_url %></a></td>
+            <td><a href='<%= ms.prod.info_url %>'><%= ms.int.info_url %></a></td>
+        </tr>
+
+        <% }) %>
+
+    </tbody>
+</table>
+
+<%- include('includes/end.ejs') %>

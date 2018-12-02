@@ -19,9 +19,15 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv-extended": "^2.3.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "lodash": "^4.17.11",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.set": "^4.3.2",
     "mongodb": "^3.1.8",
-    "mongoose": "^5.3.9"
+    "mongoose": "^5.3.9",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"

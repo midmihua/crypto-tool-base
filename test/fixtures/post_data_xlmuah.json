@@ -1,0 +1,24 @@
+{
+	"market": "kuna",
+	"url": "https://kuna.io",
+	"description": "technical information",
+	"pair": {
+		"name": "xlmuah",
+		"orders": [
+			{
+				"id": 1,
+				"price": 6,
+				"count": 18,
+				"status": 1
+			}
+		],
+		"profit": {
+			"total_count": 0,
+			"total_spent": 0,
+			"avg_price": 0,
+			"current_price": 0,
+			"possible_profit": 0,
+			"possible_profit_percents": 0
+		}
+	}
+}
